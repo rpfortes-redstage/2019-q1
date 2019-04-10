@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Redstage\Company\Api\EmployeeRepositoryInterface" type="Redstage\Company\Model\EmployeeRepository"/>
+
+    <preference for="Redstage\Company\Api\Data\EmployeeInterface" type="Redstage\Company\Model\Employee"/>
+
+    <preference for="Redstage\Company\Api\Data\EmployeeSearchResultInterface" type="Redstage\Company\Model\EmployeeSearchResult"/>
+
+    <preference for="Redstage\Company\Api\DepartmentRepositoryInterface" type="Redstage\Company\Model\EmployeeRepository"/>
+
+    <preference for="Redstage\Company\Api\Data\DepartmentInterface" type="Redstage\Company\Model\Department"/>
+
+    <preference for="Redstage\Company\Api\Data\DepartmentSearchResultInterface" type="Redstage\Company\Model\DepartmentSearchResult"/>
+
+<!--    <type name="Redstage\Company\Api\EmployeeRepositoryInterface">
+        <plugin name="save_employee_attribute" type="Redstage\Company\Plugin\EmployeeSave"/>
+        <plugin name="get_employee_attribute" type="Redstage\Company\Plugin\EmployeeGet"/>
+    </type>-->
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="departments_listing_data_source" xsi:type="string">
+                    Redstage\Company\Model\ResourceModel\Department\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="DepartmentsGridDataProvider"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">
+                Redstage\Company\Model\ResourceModel\Department\Collection
+            </argument>
+            <argument name="filterPool" xsi:type="object" shared="false">DepartmentsGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+</config>

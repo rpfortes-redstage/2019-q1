@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Redstage_Company::redstage_group"
+             title="Redstage Company"
+             module="Redstage_Company"
+             resource="Redstage_Company::departments"
+             sortOrder="30"/>
+
+        <!--Departments-->
+        <add id="Redstage_Company::departments"
+             title="Departments"
+             module="Redstage_Company"
+             sortOrder="10"
+             parent="Redstage_Company::redstage_group"
+             action="departments/index/index"
+             resource="Redstage_Company::departments"/>
+    </menu>
+</config>
